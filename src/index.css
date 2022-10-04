@@ -1,0 +1,23 @@
+body {
+    background-color: #272727;
+    text-align: center;
+}
+
+#header {
+    color: whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.SearchUI{
+    color: whitesmoke;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 26px;
+}
+
+#inputRules {
+    color: whitesmoke;
+    font-family: "Helvetica";
+    font-weight: 300;
+    font-size: 16px;
+}
