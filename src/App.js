@@ -2,20 +2,27 @@ import { useEffect, useState } from "react";
 
 export default function App() {
     
-const [search, setSearch] = useState();
+const [search, setSearch] = useState("");
 
 const [keikkaData, setKeikkaData] = useState();
 
-const apiURL = ("https://keikkakoodi.herokuapp.com/keikat");
+const apiURL = ("https://keikkakoodibackend.herokuapp.com/api/keikat");
+const devApiURL = ("https://80-keikkakoodi-server-czwmikg4zge.ws-eu67.gitpod.io/api/keikat");
 
-const handleSearchKeikka = (event) => {
-    event.preventDefault();
-console.log("Haettu koodia:" + search);
+
+function koodiPrompt () {
+  let promptValue = prompt("Syötä tehtäväkoodi")
+  parseInt(promptValue)
+  setSearch(promptValue);
 }
 
+function searchKeikka(){
+  koodiPrompt();
+  console.log("Haettu koodia:" + search);
+}
 
 useEffect(() => {
-  fetch(apiURL)
+  fetch(devApiURL)
     .then((response) => {
       if (!response.ok) {
         throw new Error(
@@ -35,17 +42,11 @@ console.log(keikkaData);
 
 return(
     <div className="SearchUI">
-        <form onSubmit={handleSearchKeikka}>
             Hae tehtäväkoodia: <br/>
             <p id="inputRules"> Mikäli tehtäväkoodi sisältää kiireellisyysluoka (kirjain A,B,C,D) sitä EI tule syöttää</p>
+            <button onClick={searchKeikka}>Hae keikkaa</button>
+            <p>{keikkaData}</p>
 
-            <input 
-            type="number"
-            value={setSearch}
-            /> <br/>
-
-            <input type="submit" />
-        </form>
     </div>
 );//return
 }
